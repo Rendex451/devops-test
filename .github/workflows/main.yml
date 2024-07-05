@@ -23,7 +23,7 @@ jobs:
       run: |
         pip install pytest pytest-cov
         cp tests/commit-tests/* .
-        pytest tests/commit-tests/test.py
+        pytest test.py
 
   build:
     needs: [unit-tests]
