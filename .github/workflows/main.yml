@@ -48,9 +48,25 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Run integration tests
+    - name: Install python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Install pytest
       run: |
         pip install pytest
+    - name: Check pytest installation
+      run: |
+        export PATH=$HOME/.local/bin:$PATH
+        which pytest
+        pytest --version
+    - name: Run integration tests
+      run: |
+        export PATH=$HOME/.local/bin:$PATH
         cp tests/release-tests/* .
         pytest test.py
         rm test.py
