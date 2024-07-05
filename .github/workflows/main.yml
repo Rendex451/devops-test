@@ -19,9 +19,9 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Test with pytest
+    - name: Run unit tests
       run: |
-        pip install pytest pytest-cov
+        pip install pytest
         cp tests/commit-tests/* .
         pytest test.py
         rm test.py
@@ -50,7 +50,10 @@ jobs:
       uses: actions/checkout@v2
     - name: Run integration tests
       run: |
-        python3 -m pytest discover tests/release-tests
+        pip install pytest
+        cp tests/release-tests/* .
+        pytest test.py
+        rm test.py
   
   deploy:
     needs: [integration-tests]
