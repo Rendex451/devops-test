@@ -22,6 +22,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
+        cp tests/commit-tests/* .
         pytest tests/commit-tests/test.py
 
   build:
